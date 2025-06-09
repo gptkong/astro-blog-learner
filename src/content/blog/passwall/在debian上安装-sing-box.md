@@ -2,7 +2,7 @@
 title: 在debian上安装 sing-box
 pubDate: 2025-05-06 11:00:01
 tags: [sing-box]
-summary: 在 Debian 系统上安装和配置 sing-box 代理工具的完整教程
+description: 在 Debian 系统上安装和配置 sing-box 代理工具的完整教程
 ---
 
 ## 官方一键安装脚本

@@ -2,7 +2,7 @@
 title: 一键安装sing-box 并配置好ss2022 + shadow-tls
 pubDate: 2025-05-06 16:57:12
 tags: [sing-box,shadow-tls,ss]
-summary: 本文介绍如何使用一键脚本安装和配置sing-box，并设置ss2022和shadow-tls加密
+description: 本文介绍如何使用一键脚本安装和配置sing-box，并设置ss2022和shadow-tls加密
 ---
 
 ## 一健脚本

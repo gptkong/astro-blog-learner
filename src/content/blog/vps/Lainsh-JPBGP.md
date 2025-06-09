@@ -2,7 +2,7 @@
 title: 'Lainsh-Japan-BGP'
 pubDate: 2025-05-30 16:00:00
 tags: [vps]
-summary: 'Lainsh-JapanBGP 网络质量测试'
+description: 'Lainsh-JapanBGP 网络质量测试'
 draft: true
 ---
 

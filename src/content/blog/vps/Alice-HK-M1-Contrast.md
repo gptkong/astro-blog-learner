@@ -2,7 +2,7 @@
 title: '[NodeQuality] Alice HK M1'
 pubDate: 2025-05-30 11:00:00
 tags: [vps,DNS解锁]
-summary: 本文介绍Alice HK M1的性能测试结果
+description: 本文介绍Alice HK M1的性能测试结果
 ---
 
 > Alice清退前夕,最后一测
