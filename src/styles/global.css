@@ -1,16 +1,59 @@
 @import "tailwindcss";
 
-:root {
+@layer base {
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply flex items-center mb-0.5;
+
+    &::before {
+      content: "#";
+      font-style: italic;
+      color: var(--color-teal-400);
+      margin-right: 0.25rem;
+    }
+  }
+  h1 {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-loose);
+  }
+  h2 {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-loose);
+  }
+  h3 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-loose);
+  }
+  a {
+    @apply underline text-teal-200;
+  }
+  pre {
+    @apply px-1 py-4;
+  }
+  code {
+    counter-reset: step;
+    counter-increment: step 0;
+    .line::before {
+      content: counter(step);
+      counter-increment: step;
+      width: 2rem;
+      margin-right: 0.5rem;
+      display: inline-block;
+      text-align: right;
+      color: rgba(115, 138, 148, 0.4);
+    }
+  }
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-size: 20px;
 }
+
 main {
-  width: 720px;
-  max-width: calc(100% - 2em);
+  width: var(--container-3xl);
+  padding: 3rem 2rem;
   margin: auto;
-  padding: 3em 1em;
 }

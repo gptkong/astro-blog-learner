@@ -1,6 +1,7 @@
 ---
 title: 自建DNS解锁流媒体
 pubDate: 2025-06-02
+updatedDate: 2025-06-13
 description: 利用解锁服务器搭建DNS解锁流媒体
 tags:
   - vps
