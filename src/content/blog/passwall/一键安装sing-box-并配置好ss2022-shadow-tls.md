@@ -1,9 +1,11 @@
 ---
 title: 一键安装sing-box 并配置好ss2022 + shadow-tls
 pubDate: 2025-05-06 16:57:12
-tags: [sing-box,shadow-tls,ss]
+tags: [sing-box, shadow-tls, ss]
 description: 本文介绍如何使用一键脚本安装和配置sing-box，并设置ss2022和shadow-tls加密
 ---
+
+[TOC]
 
 ## 一健脚本
 
@@ -18,7 +20,7 @@ bash <(curl -Ls https://alist.kong.vision/d/r2/ss/script/sb-kong.sh)
 
 # 检查是否为root用户
 if [ "$(id -u)" != "0" ]; then
-   echo "此脚本需要root权限运行" 
+   echo "此脚本需要root权限运行"
    exit 1
 fi
 
@@ -194,5 +196,5 @@ if [ -z "$HOSTNAME" ] || [ "$HOSTNAME" = "localhost" ]; then
 fi
 
 # 输出配置信息
-echo "${HOSTNAME}=ss,${SERVER_IP},${SHADOWTLS_PORT},encrypt-method=2022-blake3-aes-256-gcm,password=\"${SHADOWSOCKS_PASSWORD}\",udp-relay=true,shadow-tls-password=${SHADOWTLS_PASSWORD},shadow-tls-sni=azure.microsoft.com,shadow-tls-version=3" 
+echo "${HOSTNAME}=ss,${SERVER_IP},${SHADOWTLS_PORT},encrypt-method=2022-blake3-aes-256-gcm,password=\"${SHADOWSOCKS_PASSWORD}\",udp-relay=true,shadow-tls-password=${SHADOWTLS_PASSWORD},shadow-tls-sni=azure.microsoft.com,shadow-tls-version=3"
 ```

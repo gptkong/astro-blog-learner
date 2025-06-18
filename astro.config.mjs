@@ -6,6 +6,7 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
 import tailwindcss from "@tailwindcss/vite";
+import remarkToc from "remark-toc";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,5 +24,8 @@ export default defineConfig({
       },
       wrap: false,
     },
+    remarkPlugins: [
+      [remarkToc, { tight: true, ordered: true }], // You can customize options here
+    ],
   },
 });

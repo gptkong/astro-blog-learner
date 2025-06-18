@@ -1,13 +1,13 @@
 ---
 title: shadow-tls 处理udp流量
 pubDate: 2025-05-05 21:42:11
-tags: [ss,shadow-tls]
+tags: [ss, shadow-tls]
 description: 本文介绍如何使用nftables和ss-rust处理udp流量
 ---
 
+[TOC]
 
 ## nftables 解决方案
-
 
 ```shell
 nft add table inet my_nat_table
@@ -24,11 +24,13 @@ nft add rule inet my_nat_table postrouting oifname "eth0" udp dport xxxxxx(替�
 ### nftables 部分指令
 
 1. 输出到文件持久化
+
 ```shell
 nft list ruleset > /etc/nftables.conf
 ```
 
 2. 加载规则
+
 ```shell
 nft -f /etc/nftables.conf
 ```

@@ -11,18 +11,23 @@ tags:
   - sniproxy
 ---
 
-## 使用AdguardHome搭建DNS服务器
+[TOC]
+
+## 使用 AdguardHome 搭建 DNS 服务器
 
 具体安装教程参考
+
 - [adguardhome github](https://github.com/AdguardTeam/AdGuardHome)
 - [adguard docker hub](https://hub.docker.com/r/adguard/adguardhome)
 
 ### 一键脚本
+
 ```bash
 curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
 ```
 
 ### docker
+
 ```bash
 docker run --name adguardhome\
     --restart unless-stopped\
@@ -37,24 +42,27 @@ docker run --name adguardhome\
     -d adguard/adguardhome
 ```
 
-### 配置上游DNS
+### 配置上游 DNS
+
 #### 打开过滤器
+
 ![image](https://i.111666.best/image/fd2t5mNb0Vl8GV0iC3uq1V.png)
 
 #### 一般使用`8.8.8.8`|`1.1.1.1`
+
 ![image](https://i.111666.best/image/k0Xv3MCF73ELFBMCk31Ehp.png)
 
-#### 配置adghome的自定义过滤规则
+#### 配置 adghome 的自定义过滤规则
 
-使用[DNS解锁配置生成器](https://dnsconfig.072899.xyz/), 填入解锁服务器的ip地址, v4/v6都可以,来自大佬[[hkfires](https://www.nodeseek.com/space/23484)](https://www.nodeseek.com/post-329849-1)
+使用[DNS 解锁配置生成器](https://dnsconfig.072899.xyz/), 填入解锁服务器的 ip 地址, v4/v6 都可以,来自大佬[[hkfires](https://www.nodeseek.com/space/23484)](https://www.nodeseek.com/post-329849-1)
 
 ![image](https://i.111666.best/image/O7pEaqbEULVpeWCfEgZ1ub.png)
 
 #### 填入自定义过滤规则
+
 ![image](https://i.111666.best/image/gZ9OVYQTLNAL6SBM10jkQ9.png)
 
-
-## 安装SNIProxy
+## 安装 SNIProxy
 
 > SNIProxy 本质也是一种端口转发工具
 
@@ -96,20 +104,18 @@ nano config.yaml
 nohup ./sniproxy -c "config.yaml" > "sni.log" 2>&1 &
 ```
 
-
-### 大佬提供的一键SNIProxy脚本
+### 大佬提供的一键 SNIProxy 脚本
 
 ```
 curl -sSL https://raw.githubusercontent.com/hkfires/DNS-Unlock-Server/main/install_sniproxy.sh | sudo bash
 ```
 
+## 配置 DNS 解锁
 
-## 配置DNS解锁
-
-> DNS配置解锁时最好是直接使用resolv模式直接全局改为adghome的dns配置
+> DNS 配置解锁时最好是直接使用 resolv 模式直接全局改为 adghome 的 dns 配置
 
 [一键脚本](https://github.com/Jimmyzxk/DNS-Alice-Unlock)
 
-
 ### 解锁效果
+
 ![image](https://i.111666.best/image/urEmGs258tnGXvpDd313T8.png)

@@ -5,14 +5,16 @@ tags: [vps]
 description: "wap japan pro 老段测试"
 ---
 
+[TOC]
+
 > wap japan pro 老段测试
 
 # 2025-06-06 晚高峰网络测试
+
 ![image](https://i.111666.best/image/wKc4r5ytv89OnArUnaXSkQ.png)
 
+# 💻 基本信息
 
-
-# 💻基本信息
 ```
 Basic System Information:
 ---------------------------------
@@ -41,10 +43,10 @@ Less than 2GB of space available. Skipping disk test...
 
 Geekbench 5 Benchmark Test:
 ---------------------------------
-Test            | Value                         
-                |                               
-Single Core     | 784                           
-Multi Core      | 789                           
+Test            | Value
+                |
+Single Core     | 784
+Multi Core      | 789
 Full Test       | https://browser.geekbench.com/v5/cpu/23579013
 
  SysBench CPU 测试 (Fast Mode, 1-Pass @ 5sec)
@@ -55,21 +57,17 @@ Full Test       | https://browser.geekbench.com/v5/cpu/23579013
  单线程读测试:          41239.56 MB/s
  单线程写测试:          18443.78 MB/s
 ```
-# 🎬IP质量
- ![image](https://i.111666.best/image/doMprhVDy6vVFb0Wqt4FX0.webp)
 
-# 🌐网络质量
- ![image](https://i.111666.best/image/pxFtEmCZS5OrfxbxO4ytmg.webp)
+# 🎬IP 质量
 
-# 📍回程路由
- ![image](https://i.111666.best/image/x6Ol5WzhsaEHSmVcmgS10s.webp)
+![image](https://i.111666.best/image/doMprhVDy6vVFb0Wqt4FX0.webp)
 
+# 🌐 网络质量
 
-[NodeQuality链接](https://nodequality.com/r/SWJw7eLyZ9ckry3rKAEANS0D0L1r5bE1)
+![image](https://i.111666.best/image/pxFtEmCZS5OrfxbxO4ytmg.webp)
 
+# 📍 回程路由
 
+![image](https://i.111666.best/image/x6Ol5WzhsaEHSmVcmgS10s.webp)
 
-
-
-
-
+[NodeQuality 链接](https://nodequality.com/r/SWJw7eLyZ9ckry3rKAEANS0D0L1r5bE1)
