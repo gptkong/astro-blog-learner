@@ -68,7 +68,7 @@ docker run --name adguardhome\
 
 [官方配置教程如下](https://github.com/XIU2/SNIProxy?tab=readme-ov-file#-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 
-```
+```bash
 # 如果是第一次使用，则建议创建新文件夹（后续更新时，跳过该步骤）
 mkdir sniproxy
 
@@ -106,7 +106,7 @@ nohup ./sniproxy -c "config.yaml" > "sni.log" 2>&1 &
 
 ### 大佬提供的一键 SNIProxy 脚本
 
-```
+```shell
 curl -sSL https://raw.githubusercontent.com/hkfires/DNS-Unlock-Server/main/install_sniproxy.sh | sudo bash
 ```
 
