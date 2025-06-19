@@ -32,12 +32,13 @@ export default function PostCard({ post }: Props) {
                     {tags && tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-3">
                             {tags.map((tag: string) => (
-                                <span
+                                <a
                                     key={tag}
-                                    className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-colors duration-200"
+                                    href={`/tags/${encodeURIComponent(tag)}/`}
+                                    className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full hover:bg-blue-100 transition-colors duration-200"
                                 >
                                     {tag}
-                                </span>
+                                </a>
                             ))}
                         </div>
                     )}

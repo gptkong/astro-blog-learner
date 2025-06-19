@@ -9,7 +9,8 @@ import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags } =
+  Astro.props;
 ---
 
 <html lang="zh-cn">
@@ -21,49 +22,80 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
     <Header />
     <main>
       <article class="max-w-4xl mx-auto px-4">
-        {heroImage && (
-          <div class="mb-8">
-            <Image
-              src={heroImage}
-              alt={title}
-              width={1020}
-              height={510}
-              class="w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
-        )}
+        {
+          heroImage && (
+            <div class="mb-8">
+              <Image
+                src={heroImage}
+                alt={title}
+                width={1020}
+                height={510}
+                class="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          )
+        }
         <div class="prose prose-lg max-w-none">
           <header class="mb-8">
             <h1 class="text-4xl font-bold mb-4 text-gray-800">{title}</h1>
             <div class="flex flex-wrap items-center gap-4 text-gray-600">
               <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
                 </svg>
                 <FormattedDate date={pubDate} />
               </div>
-              {updatedDate && (
-                <div class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                  <FormattedDate date={updatedDate} />
-                </div>
-              )}
+              {
+                updatedDate && (
+                  <div class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      />
+                    </svg>
+                    <FormattedDate date={updatedDate} />
+                  </div>
+                )
+              }
             </div>
-            {tags && tags.length > 0 && (
-              <div class="flex flex-wrap gap-2 mt-4">
-                {tags.map((tag) => (
-                  <span
-                    class="px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-colors duration-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            {
+              tags && tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-4">
+                  {tags.map((tag) => (
+                    <a
+                      href={`/tags/${encodeURIComponent(tag)}/`}
+                      class="px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full hover:bg-blue-100 transition-colors duration-200"
+                    >
+                      {tag}
+                    </a>
+                  ))}
+                </div>
+              )
+            }
           </header>
-          <div class="prose-headings:font-bold prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
+          <div
+            class="prose-headings:font-bold prose-headings:text-gray-800 prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline"
+          >
             <slot />
           </div>
         </div>
