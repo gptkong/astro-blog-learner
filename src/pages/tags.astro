@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import BasePage from "../layouts/BasePage.astro";
+
+const posts = await getCollection("blog");
+const tagMap = new Map();
+for (const post of posts) {
+  if (post.data.tags) {
+    for (const tag of post.data.tags) {
+      if (!tagMap.has(tag)) tagMap.set(tag, 0);
+      tagMap.set(tag, tagMap.get(tag) + 1);
+    }
+  }
+}
+const tags = Array.from(tagMap.entries()).sort((a, b) => b[1] - a[1]);
+---
+
+<BasePage>
+  <section class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">所有标签</h1>
+    <div class="flex flex-wrap gap-4 justify-center">
+      {tags.length === 0 && <p>暂无标签</p>}
+      {tags.map(([tag, count]) => (
+        <a
+          href={`/tags/${encodeURIComponent(tag)}/`}
+          class="px-4 py-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 transition-colors duration-200 text-lg"
+        >
+          {tag} <span class="text-sm text-gray-500">({count})</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BasePage> 
