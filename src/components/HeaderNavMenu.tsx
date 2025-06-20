@@ -17,11 +17,11 @@ export default function HeaderNavMenu() {
             Home
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuLink href="/blog" className={linkClassName}>
             Blog
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuLink href="/tags" className={linkClassName}>
             Tags
