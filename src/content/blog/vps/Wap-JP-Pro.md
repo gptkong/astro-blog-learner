@@ -1,8 +1,8 @@
 ---
-title: "[NodeQuality]Wap-Japan-Pro"
+title: "Wap-Japan-Pro"
 pubDate: 2025-06-01
-tags: [vps]
-description: "wap japan pro 老段测试"
+tags: [vps,nodequality]
+description: "wap japan pro 老段测试 月付1$"
 ---
 
 [TOC]

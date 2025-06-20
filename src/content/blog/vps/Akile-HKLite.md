@@ -1,7 +1,7 @@
 ---
-title: "[NodeQuality] Akile HKLite BlackFriday 2024"
+title: "Akile HKLite BlackFriday 2024"
 pubDate: 2025-05-30
-tags: [vps, DNS解锁]
+tags: [vps, nodequality, DNS解锁]
 description: 本文介绍Akile HKLite BlackFriday 2024的性能测试结果
 ---
 

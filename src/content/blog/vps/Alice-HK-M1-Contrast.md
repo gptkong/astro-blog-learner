@@ -1,7 +1,7 @@
 ---
-title: "[NodeQuality] Alice HK M1"
+title: "Alice HK M1"
 pubDate: 2025-05-30 11:00:00
-tags: [vps, DNS解锁]
+tags: [vps,nodequality, DNS解锁]
 description: 本文介绍Alice HK M1的性能测试结果
 ---
 
