@@ -1,49 +1,95 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
+import HeaderNavMenu from "./HeaderNavMenu";
 import { SITE_TITLE } from "../consts";
 ---
 
-<header class="m-0 px-4 py-4 bg-white shadow">
-  <nav>
-    <div class="m-0 text-4xl font-black"><a href="/">{SITE_TITLE}</a></div>
-    <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/tags">Tags</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
+<header id="header" class="header-fixed">
+  <div class="flex items-center justify-between py-1">
+    <div class="m-0">
+      <a
+        href="/"
+        class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-purple-500 hover:to-pink-500 transition-all duration-300"
+      >
+        {SITE_TITLE}
+      </a>
     </div>
-  </nav>
+    <HeaderNavMenu />
+  </div>
 </header>
-<style>
-  h2 {
-  }
 
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
+<script>
+  let lastScrollTop = 0;
+  const header = document.getElementById("header");
+  const scrollThreshold = 100; // 滚动阈值，超过这个距离才开始隐藏/显示
+
+  if (header) {
+    window.addEventListener("scroll", () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      // 只有在滚动超过阈值后才开始处理
+      if (scrollTop > scrollThreshold) {
+        if (scrollTop > lastScrollTop) {
+          // 向下滚动 - 隐藏header
+          header.classList.add("header-hidden");
+        } else {
+          // 向上滚动 - 显示header
+          header.classList.remove("header-hidden");
+        }
+      } else {
+        // 在顶部附近时始终显示
+        header.classList.remove("header-hidden");
+      }
+      lastScrollTop = scrollTop;
+    });
+  }
+</script>
+
+<style>
+  .header-fixed {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    width: 95%;
+    max-width: 1200px;
+    transform: translateX(-50%);
+    border-radius: 9999px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition:
+      transform 0.3s ease-in-out,
+      top 0.3s ease-in-out;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 2rem;
+  }
+  .header-hidden {
+    transform: translateX(-50%) translateY(-150%);
+    top: 0;
+  }
+  body {
+    padding-top: 100px; /* Adjust to prevent content from hiding behind the floating header */
   }
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 60px;
+    width: 100%;
   }
-  nav a {
-    padding: 1em 0.5em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
-  }
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent);
-  }
-  .social-links,
-  .social-links a {
-    display: flex;
+  @media (max-width: 1280px) {
+    .header-fixed {
+      width: 95%;
+      padding: 0 1rem;
+    }
   }
   @media (max-width: 720px) {
-    .social-links {
-      display: none;
+    .header-fixed {
+      width: calc(100% - 1rem);
+      top: 0.5rem;
+      padding: 0 0.5rem;
+    }
+    nav {
+      padding: 0;
     }
   }
 </style>
