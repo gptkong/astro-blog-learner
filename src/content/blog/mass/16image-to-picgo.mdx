@@ -1,0 +1,33 @@
+---
+title: "picgo/picList 配置 16图床自动上传图片"
+pubDate: 2025-6-20
+description: "使用 picgo/picList 配置 111666图床自动上传图片"
+tags: ["picgo", "picList", "图床"]
+---
+
+## 图形化配置截图
+![gui config](https://i.111666.best/image/GI84wrS6VHF5sAsHlf3b01.png)
+
+
+## 配置文件json
+
+```json
+    {
+        "_configName": "16图床",
+        "_id": "be02eb4a-2a6b-4b1b-96de-197ed2487129",
+        "_createdAt": 1750387164825,
+        "_updatedAt": 1750387858318,
+        "endpoint": "https://i.111666.best/image",
+        "method": "POST",
+        "formDataKey": "abc",
+        "headers": "{\"Auth-Token\":\"xxxxxxxxxxxxxxxxx\"}",
+        "body": "{}",
+        "customPrefix": "https://i.111666.best",
+        "webPath": "",
+        "resDataPath": "src"
+    }
+```
+
+## 如何获取 Auth-Token
+![get auth-token](https://i.111666.best/image/S0vhuJvdmQRWDaGHoYo56d.png)
+
