@@ -2,6 +2,7 @@
 title: Bage JPS
 pubDate: 2025-06-22
 description: bage jps nodequality
+tags: [vps, nodequality]
 ---
 
 # 💻基本信息
