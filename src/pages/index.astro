@@ -4,7 +4,11 @@ import { getCollection } from "astro:content";
 import PostCard from "../components/PostCard.tsx";
 
 const recentPosts = (await getCollection("blog"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .sort((a, b) => {
+    const aDate = a.data.updatedDate ? a.data.updatedDate.valueOf() : a.data.pubDate.valueOf();
+    const bDate = b.data.updatedDate ? b.data.updatedDate.valueOf() : b.data.pubDate.valueOf();
+    return bDate - aDate;
+  })
   .slice(0, 3);
 ---
 
