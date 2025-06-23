@@ -1,6 +1,7 @@
 ---
 title: shadow-tls 处理udp流量
 pubDate: 2025-05-05 21:42:11
+updateDate: 2025-06-23 16:30:00
 tags: [ss, shadow-tls]
 description: 本文介绍如何使用nftables和ss-rust处理udp流量
 ---
@@ -8,6 +9,26 @@ description: 本文介绍如何使用nftables和ss-rust处理udp流量
 [TOC]
 
 > 解决方案参考来源 [surge community](https://community.nssurge.com/d/1711-shadowsocks-rustshadow-tlsudp)
+
+
+## 2025-06-23更新
+
+```shell
+# 在ipv6 only的机器下配置
+
+table ip6 nat {
+        chain prerouting {
+                type nat hook prerouting priority dstnat; policy accept;
+                iifname "eth0" ip6 daddr 公网ipv6 udp dport 21042 dnat to :19569
+        }
+
+        chain postrouting {
+                type nat hook postrouting priority srcnat; policy accept;
+                oifname "eth0" udp dport 19569 masquerade
+        }
+}
+```
+
 
 ## nftables 解决方案
 
