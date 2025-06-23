@@ -1,5 +1,5 @@
 ---
-title: Bage JPS
+title: Bage JPS 测试
 pubDate: 2025-06-22
 description: bage jps nodequality
 tags: [vps, nodequality]
