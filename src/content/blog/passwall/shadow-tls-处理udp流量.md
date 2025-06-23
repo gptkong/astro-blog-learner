@@ -7,6 +7,8 @@ description: 本文介绍如何使用nftables和ss-rust处理udp流量
 
 [TOC]
 
+> 解决方案参考来源 [surge community](https://community.nssurge.com/d/1711-shadowsocks-rustshadow-tlsudp)
+
 ## nftables 解决方案
 
 ```shell
