@@ -1,13 +1,19 @@
 ---
 title: "Wap-Japan-Pro"
 pubDate: 2025-06-01
-tags: [vps,nodequality]
+tags: [vps, nodequality]
 description: "wap japan pro 老段测试 月付1$"
 ---
 
 [TOC]
 
 > wap japan pro 老段测试
+
+# 2025-07-10 老段 IP 即将更换成新 ip
+
+> JP Pro 部分 IP（103.20.X.X）由于归属人实体消失，我方丧失租用权，需要立刻更换。由于剩余 IP 不足，我们正在广播新的 IP 段，同时会根据工单优先，逐步更换的方式进行。
+
+![](https://i.111666.best/image/lyTL0DHHgeQ4DPYKHQIc8E.png)
 
 # 2025-06-06 晚高峰网络测试
 
