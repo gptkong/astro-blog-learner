@@ -1,6 +1,6 @@
 ---
 title: QNAP 威联通 Container 配置 Proxy
-decription: 修改container配置proxy
+description: 修改container配置proxy
 pubDate: 2025-07-27
 tags: [QNap， Docker]
 ---
