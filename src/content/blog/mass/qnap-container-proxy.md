@@ -9,7 +9,7 @@ tags: [QNap， Docker]
 
 ```shell
 
-// 配置 /share/CACHEDEV1_DATA/.qpkg/container-station/script/run-docker.sh
+# 配置 /share/CACHEDEV1_DATA/.qpkg/container-station/script/run-docker.sh
 
 export http_proxy="http://Clash:6oKdGFuX@192.168.5.249:7893"
 export https_proxy="http://Clash:6oKdGFuX@192.168.5.249:7893"
