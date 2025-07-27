@@ -7,7 +7,7 @@ tags: [QNap， Docker]
 
 ## 修改配置
 
-···shell
+```shell
 
 // 配置 /share/CACHEDEV1_DATA/.qpkg/container-station/script/run-docker.sh
 
@@ -18,8 +18,7 @@ export no_proxy="localhost,127.0.0.1,::1,192.168.0.0/16,10.0.0.0/8,*.example.com
 。。。。。。
 
 exec dockerd $DOCKER_OPTS
-
-···
+```
 
 ## 重启Container
 
