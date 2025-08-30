@@ -15,7 +15,7 @@ export http_proxy="http://Clash:6oKdGFuX@192.168.5.249:7893"
 export https_proxy="http://Clash:6oKdGFuX@192.168.5.249:7893"
 export no_proxy="localhost,127.0.0.1,::1,192.168.0.0/16,10.0.0.0/8,*.example.com"
 
-。。。。。。
+......原始内容......
 
 exec dockerd $DOCKER_OPTS
 ```
