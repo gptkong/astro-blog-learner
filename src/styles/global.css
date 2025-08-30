@@ -41,7 +41,52 @@
 
   /* 代码块样式 */
   pre {
-    @apply bg-gray-900 text-gray-100 rounded-lg p-4 my-4 overflow-x-auto;
+    @apply bg-gray-900 text-gray-100 rounded-lg my-4 overflow-x-auto relative;
+    padding: 1rem 1rem 1rem 1rem;
+    border: 1px solid #374151;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* 代码块容器 */
+  .code-block-container {
+    @apply relative;
+  }
+
+  /* 语言标签 */
+  .code-language-label {
+    @apply absolute top-2 left-4 text-xs text-gray-400 font-medium uppercase tracking-wide;
+    z-index: 10;
+  }
+
+  /* 复制按钮 */
+  .copy-button {
+    @apply absolute top-2 right-2 p-2 bg-gray-700 hover:bg-gray-600 rounded-md text-gray-300 hover:text-white transition-all duration-200 opacity-0;
+    z-index: 10;
+  }
+
+  /* 显示复制按钮在悬停时 */
+  .code-block-container:hover .copy-button {
+    @apply opacity-100;
+  }
+
+  .copy-button:hover {
+    transform: scale(1.05);
+  }
+
+  /* 复制成功状态 */
+  .copy-button.copied {
+    @apply bg-green-600 text-white opacity-100;
+  }
+
+  /* 调整代码内容的上边距以避免与标签重叠 */
+  pre code {
+    @apply block;
+    padding-top: 1.5rem !important;
+  }
+
+  /* 确保代码块有语言标签时的间距 */
+  .code-block-container pre {
+    margin-top: 0;
   }
 
   code {
@@ -51,6 +96,11 @@
   /* 行内代码样式 */
   :not(pre) > code {
     @apply bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm;
+  }
+
+  /* 深色模式下的行内代码 */
+  .dark :not(pre) > code {
+    @apply bg-gray-800 text-gray-200;
   }
 
   /* 引用块样式 */

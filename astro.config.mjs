@@ -7,6 +7,7 @@ import react from "@astrojs/react";
 
 import tailwindcss from "@tailwindcss/vite";
 import remarkToc from "remark-toc";
+import { rehypeCodeBlock } from "./src/lib/rehype-code-block.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,6 +27,9 @@ export default defineConfig({
     },
     remarkPlugins: [
       [remarkToc, { tight: true, ordered: true }], // You can customize options here
+    ],
+    rehypePlugins: [
+      rehypeCodeBlock,
     ],
   },
 });
