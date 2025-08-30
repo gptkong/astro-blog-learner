@@ -39,54 +39,544 @@
     @apply text-blue-600 no-underline hover:underline transition-colors duration-200;
   }
 
-  /* 代码块样式 */
-  pre {
-    @apply bg-gray-900 text-gray-100 rounded-lg my-4 overflow-x-auto relative;
-    padding: 1rem 1rem 1rem 1rem;
-    border: 1px solid #374151;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-
-  /* 代码块容器 */
+  /* 现代化代码块容器 */
   .code-block-container {
-    @apply relative;
+    @apply relative my-6;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(8px);
   }
 
-  /* 语言标签 */
+  .code-block-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 32px 64px -12px rgba(0, 0, 0, 0.25),
+      0 25px 50px -12px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  /* 代码块头部装饰 */
+  .code-block-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(90deg, 
+      rgba(239, 68, 68, 0.8) 0%, 
+      rgba(245, 158, 11, 0.8) 33%, 
+      rgba(34, 197, 94, 0.8) 66%,
+      rgba(59, 130, 246, 0.8) 100%
+    );
+    opacity: 0.6;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .code-block-container:hover::before {
+    opacity: 0.8;
+  }
+
+  /* macOS风格的窗口按钮 */
+  .code-block-container::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    width: 12px;
+    height: 12px;
+    background: #ef4444;
+    border-radius: 50%;
+    box-shadow: 
+      20px 0 0 #f59e0b,
+      40px 0 0 #22c55e;
+    z-index: 15;
+    transition: all 0.3s ease;
+  }
+
+  .code-block-container:hover::after {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+
+  /* 现代化语言标签 */
   .code-language-label {
-    @apply absolute top-2 left-4 text-xs text-gray-400 font-medium uppercase tracking-wide;
-    z-index: 10;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    padding: 4px 12px;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px;
+    color: #93c5fd;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    z-index: 15;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-2px);
   }
 
-  /* 复制按钮 */
+  .code-block-container:hover .code-language-label {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #dbeafe;
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  /* 超现代化复制按钮 */
   .copy-button {
-    @apply absolute top-2 right-2 p-2 bg-gray-700 hover:bg-gray-600 rounded-md text-gray-300 hover:text-white transition-all duration-200 opacity-0;
-    z-index: 10;
+    position: absolute;
+    top: 50px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 12px;
+    color: #cbd5e1;
+    cursor: pointer;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateX(20px) scale(0.8);
   }
 
-  /* 显示复制按钮在悬停时 */
   .code-block-container:hover .copy-button {
-    @apply opacity-100;
+    opacity: 1;
+    transform: translateX(0) scale(1);
   }
 
   .copy-button:hover {
-    transform: scale(1.05);
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.3));
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #dbeafe;
+    transform: translateX(0) scale(1.1) rotate(5deg);
+    box-shadow: 
+      0 10px 25px -5px rgba(59, 130, 246, 0.4),
+      0 4px 6px -2px rgba(59, 130, 246, 0.2);
+  }
+
+  .copy-button:active {
+    transform: translateX(0) scale(0.95);
+  }
+
+  /* 复制按钮图标动画 */
+  .copy-button svg {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .copy-button:hover svg {
+    transform: rotate(-5deg) scale(1.1);
   }
 
   /* 复制成功状态 */
   .copy-button.copied {
-    @apply bg-green-600 text-white opacity-100;
+    background: linear-gradient(145deg, rgba(34, 197, 94, 0.8), rgba(21, 128, 61, 0.8));
+    border-color: rgba(34, 197, 94, 0.6);
+    color: #dcfce7;
+    opacity: 1;
+    transform: translateX(0) scale(1.15);
+    animation: copySuccess 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* 调整代码内容的上边距以避免与标签重叠 */
+  @keyframes copySuccess {
+    0% { transform: translateX(0) scale(1); }
+    50% { transform: translateX(0) scale(1.2) rotate(10deg); }
+    100% { transform: translateX(0) scale(1.15); }
+  }
+
+  /* 复制按钮加载状态 */
+  .copy-button.loading {
+    background: linear-gradient(145deg, rgba(168, 85, 247, 0.3), rgba(147, 51, 234, 0.3));
+    border-color: rgba(168, 85, 247, 0.5);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* 现代化代码块样式 */
+  pre {
+    @apply text-gray-100 overflow-x-auto relative;
+    margin: 0;
+    padding: 60px 24px 24px 24px;
+    background: transparent;
+    border-radius: 0 0 16px 16px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* 代码内容样式 */
   pre code {
     @apply block;
-    padding-top: 1.5rem !important;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
   }
 
-  /* 确保代码块有语言标签时的间距 */
+  /* 代码行号效果 */
   .code-block-container pre {
-    margin-top: 0;
+    position: relative;
+    counter-reset: line;
+  }
+
+  .code-block-container pre .line {
+    display: block;
+    position: relative;
+    padding-left: 3rem;
+    transition: all 0.2s ease;
+  }
+
+  .code-block-container pre .line:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 4px;
+  }
+
+  .code-block-container pre .line::before {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    color: rgba(148, 163, 184, 0.4);
+    text-align: right;
+    font-size: 12px;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+
+  .code-block-container pre .line:hover::before {
+    color: rgba(59, 130, 246, 0.6);
+  }
+
+  /* 滚动条现代化 */
+  .code-block-container pre::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .code-block-container pre::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 4px;
+  }
+
+  .code-block-container pre::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.6), rgba(147, 51, 234, 0.6));
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .code-block-container pre::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.8));
+  }
+
+  /* 语言图标样式 */
+  .language-icon {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 4px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-2px); }
+  }
+
+  /* 代码行数指示器 */
+  .code-line-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    padding: 2px 8px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    font-size: 10px;
+    color: rgba(148, 163, 184, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .code-block-container:hover .code-line-indicator {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 复制图标切换动画 */
+  .copy-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .copy-svg, .check-svg {
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .copy-button:not(.copied) .copy-svg {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  .copy-button:not(.copied) .check-svg {
+    opacity: 0;
+    transform: scale(0.8) rotate(-90deg);
+  }
+
+  .copy-button.copied .copy-svg {
+    opacity: 0;
+    transform: scale(0.8) rotate(90deg);
+  }
+
+  .copy-button.copied .check-svg {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    display: block !important;
+  }
+
+  /* 加载状态旋转动画 */
+  .copy-button.loading .copy-icon {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* 代码块进入动画 */
+  .code-block-container {
+    animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .code-block-container {
+      border-radius: 12px;
+      margin: 1rem -1rem;
+    }
+
+    .code-language-label {
+      top: 6px;
+      right: 12px;
+      font-size: 9px;
+      padding: 2px 8px;
+    }
+
+    .copy-button {
+      width: 36px;
+      height: 36px;
+      top: 45px;
+      right: 12px;
+    }
+
+    .copy-button svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    pre {
+      padding: 50px 16px 20px 16px;
+      font-size: 13px;
+    }
+
+    .code-block-container pre .line {
+      padding-left: 2.5rem;
+    }
+
+    .code-block-container pre .line::before {
+      width: 1.5rem;
+      font-size: 11px;
+    }
+
+    .code-line-indicator {
+      bottom: 6px;
+      left: 12px;
+      font-size: 9px;
+      padding: 1px 6px;
+    }
+  }
+
+  /* 深色主题适配 */
+  @media (prefers-color-scheme: dark) {
+    .code-block-container {
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      border-color: rgba(148, 163, 184, 0.15);
+    }
+
+    .code-language-label {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  /* 高对比度模式 */
+  @media (prefers-contrast: high) {
+    .code-block-container {
+      border: 2px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .copy-button {
+      border: 2px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .code-language-label {
+      border: 2px solid rgba(59, 130, 246, 0.5);
+    }
+  }
+
+  /* 水平滚动指示器 */
+  .code-block-container.has-horizontal-scroll::after {
+    content: '→';
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    color: rgba(148, 163, 184, 0.5);
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10;
+    animation: fadeInOut 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* 代码选择样式 */
+  .code-block-container pre code::selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: inherit;
+  }
+
+  .code-block-container pre code::-moz-selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: inherit;
+  }
+
+  /* 焦点样式 */
+  .copy-button:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.6);
+    outline-offset: 2px;
+  }
+
+  .copy-button:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* 触摸设备优化 */
+  @media (hover: none) and (pointer: coarse) {
+    .copy-button {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    .code-language-label {
+      transform: translateY(-2px);
+    }
+
+    .code-line-indicator {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .code-block-container pre .line:hover {
+      background: transparent;
+      transform: none;
+    }
+  }
+
+  /* 打印样式 */
+  @media print {
+    .code-block-container {
+      background: white !important;
+      border: 1px solid #ccc !important;
+      box-shadow: none !important;
+      page-break-inside: avoid;
+    }
+
+    .copy-button,
+    .code-line-indicator {
+      display: none !important;
+    }
+
+    .code-language-label {
+      background: #f3f4f6 !important;
+      color: #374151 !important;
+      border: 1px solid #d1d5db !important;
+    }
+
+    pre {
+      color: #1f2937 !important;
+      background: transparent !important;
+    }
+  }
+
+  /* 减少动画模式 */
+  @media (prefers-reduced-motion: reduce) {
+    .code-block-container,
+    .copy-button,
+    .code-language-label,
+    .language-icon,
+    .copy-icon svg,
+    .code-line-indicator {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .code-block-container:hover {
+      transform: none;
+    }
+
+    .copy-button:hover {
+      transform: none;
+    }
+
+    .code-block-container.has-horizontal-scroll::after {
+      animation: none;
+      opacity: 0.6;
+    }
   }
 
   code {

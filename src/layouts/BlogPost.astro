@@ -91,8 +91,14 @@ const { title, description, pubDate, updatedDate, heroImage, tags } =
     <Footer />
     
     <script is:inline>
-      // 代码块复制功能
+      // 现代化代码块复制功能
       document.addEventListener('DOMContentLoaded', function() {
+        // 为代码块添加进入动画延迟
+        const codeBlocks = document.querySelectorAll('.code-block-container');
+        codeBlocks.forEach(function(block, index) {
+          block.style.animationDelay = (index * 0.1) + 's';
+        });
+
         // 为所有复制按钮添加事件监听器
         const copyButtons = document.querySelectorAll('.copy-button');
         
@@ -106,43 +112,135 @@ const { title, description, pubDate, updatedDate, heroImage, tags } =
               return;
             }
 
+            // 添加加载状态
+            target.classList.add('loading');
+            target.title = '复制中...';
+
             try {
               await navigator.clipboard.writeText(codeText);
               
-              // 添加复制成功的视觉反馈
+              // 移除加载状态，添加成功状态
+              target.classList.remove('loading');
               target.classList.add('copied');
               target.title = '已复制!';
               
-              // 更新按钮图标为勾选
-              const svg = target.querySelector('svg');
-              if (svg) {
-                svg.innerHTML = '<path d="m9 12 2 2 4-4"></path>';
+              // 触发成功动画
+              const container = target.closest('.code-block-container');
+              if (container) {
+                container.style.transform = 'translateY(-2px) scale(1.005)';
+                setTimeout(function() {
+                  container.style.transform = '';
+                }, 300);
               }
               
-              // 2秒后恢复原状
+              // 2.5秒后恢复原状
               setTimeout(function() {
                 target.classList.remove('copied');
                 target.title = '复制代码';
-                
-                // 恢复复制图标
-                if (svg) {
-                  svg.innerHTML = '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="m4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>';
-                }
-              }, 2000);
+              }, 2500);
               
             } catch (err) {
               console.error('Failed to copy text: ', err);
               
-              // 如果复制失败，显示错误状态
-              target.style.backgroundColor = '#ef4444';
-              target.title = '复制失败';
+              // 移除加载状态，显示错误状态
+              target.classList.remove('loading');
+              target.style.background = 'linear-gradient(145deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8))';
+              target.style.borderColor = 'rgba(239, 68, 68, 0.6)';
+              target.title = '复制失败，请重试';
               
+              // 3秒后恢复原状
               setTimeout(function() {
-                target.style.backgroundColor = '';
+                target.style.background = '';
+                target.style.borderColor = '';
                 target.title = '复制代码';
-              }, 2000);
+              }, 3000);
             }
           });
+
+          // 添加键盘支持
+          button.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              button.click();
+            }
+          });
+        });
+
+        // 代码行悬停效果
+        const codeLines = document.querySelectorAll('.code-block-container pre .line');
+        codeLines.forEach(function(line) {
+          line.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(4px)';
+            this.style.background = 'rgba(59, 130, 246, 0.08)';
+          });
+          
+          line.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.background = '';
+          });
+        });
+
+        // 添加复制快捷键支持 (Ctrl+C 或 Cmd+C)
+        document.addEventListener('keydown', function(event) {
+          if ((event.ctrlKey || event.metaKey) && event.key === 'c') {
+            const focusedElement = document.activeElement;
+            if (focusedElement && focusedElement.classList.contains('copy-button')) {
+              event.preventDefault();
+              focusedElement.click();
+            }
+          }
+        });
+
+        // 观察器：为动态添加的代码块添加功能
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            mutation.addedNodes.forEach(function(node) {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                const newCodeBlocks = node.querySelectorAll ? node.querySelectorAll('.code-block-container') : [];
+                newCodeBlocks.forEach(function(block, index) {
+                  block.style.animationDelay = (index * 0.1) + 's';
+                });
+                
+                const newCopyButtons = node.querySelectorAll ? node.querySelectorAll('.copy-button') : [];
+                newCopyButtons.forEach(function(button) {
+                  if (!button.hasAttribute('data-initialized')) {
+                    button.setAttribute('data-initialized', 'true');
+                    // 重新绑定事件监听器...
+                  }
+                });
+              }
+            });
+          });
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+
+        // 性能优化：防抖处理窗口大小变化
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function() {
+            // 重新计算代码块布局
+            codeBlocks.forEach(function(block) {
+              const pre = block.querySelector('pre');
+              if (pre && pre.scrollWidth > pre.clientWidth) {
+                block.classList.add('has-horizontal-scroll');
+              } else {
+                block.classList.remove('has-horizontal-scroll');
+              }
+            });
+          }, 250);
+        });
+
+        // 初始化时检查滚动条
+        codeBlocks.forEach(function(block) {
+          const pre = block.querySelector('pre');
+          if (pre && pre.scrollWidth > pre.clientWidth) {
+            block.classList.add('has-horizontal-scroll');
+          }
         });
       });
     </script>
