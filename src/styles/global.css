@@ -2,6 +2,70 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+/* 确保Tailwind CSS 4包含所需的工具类 */
+@theme {
+  /* 启用group工具类 */
+  --color-group-primary: var(--color-primary);
+}
+
+/* 定义card-hover相关的样式 */
+.card-container:hover {
+  /* 容器悬停状态 */
+}
+
+.card-container:hover .card-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+.card-container:hover .card-hover\:text-primary {
+  color: var(--color-primary);
+}
+
+.card-container:hover .card-hover\:border-primary\/50 {
+  border-color: color-mix(in oklch, var(--color-primary) 50%, transparent);
+}
+
+.card-container:hover .card-hover\:bg-accent\/50 {
+  background-color: color-mix(in oklch, var(--color-accent) 50%, transparent);
+}
+
+.card-container:hover .card-hover\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+.card-container:hover .card-hover\:-translate-y-0\.5 {
+  transform: translateY(-0.125rem);
+}
+
+.card-container:hover .card-hover\:rotate-5 {
+  transform: rotate(5deg);
+}
+
+.card-container:hover .card-hover\:-rotate-5 {
+  transform: rotate(-5deg);
+}
+
+.card-container:hover .card-hover\:rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* 定义post-card相关的样式 */
+.post-card:hover {
+  /* post-card悬停状态 */
+}
+
+.post-card:hover .post-card-hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+.post-card:hover .post-card-hover\:text-primary {
+  color: var(--color-primary);
+}
+
+.post-card:hover .post-card-hover\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
@@ -776,5 +840,690 @@ main {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* 新增工具类 */
+@layer utilities {
+  /* 渐变文本 */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  }
+
+  /* 玻璃态效果 */
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border border-border/50;
+  }
+
+  /* 悬浮卡片效果 */
+  .hover-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* 限制行数 */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* 动画延迟 */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  /* 平滑滚动 */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* 选择文本样式 */
+  .selection-primary {
+    &::selection {
+      @apply bg-primary/20 text-primary;
+    }
+  }
+
+  /* 响应式隐藏 */
+  .mobile-only {
+    @apply block md:hidden;
+  }
+
+  .desktop-only {
+    @apply hidden md:block;
+  }
+
+  /* 增强版代码块样式 */
+  .code-block-container {
+    @apply relative my-6 rounded-2xl overflow-hidden transition-all duration-300;
+    background: linear-gradient(145deg, oklch(0.145 0 0), oklch(0.07 0 0));
+    border: 1px solid oklch(1 0 0 / 10%);
+    box-shadow:
+      0 20px 25px -5px oklch(0 0 0 / 0.1),
+      0 10px 10px -5px oklch(0 0 0 / 0.04),
+      inset 0 1px 0 oklch(1 0 0 / 0.1);
+    backdrop-filter: blur(8px);
+  }
+
+  .code-block-container:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 32px 64px -12px oklch(0 0 0 / 0.25),
+      0 25px 50px -12px oklch(0 0 0 / 0.15),
+      inset 0 1px 0 oklch(1 0 0 / 0.15);
+    border-color: oklch(0.708 0 0 / 0.3);
+  }
+
+  /* 浅色主题适配 */
+  .code-block-container[data-theme="light"] {
+    background: linear-gradient(145deg, oklch(0.985 0 0), oklch(0.95 0 0));
+    border-color: oklch(0 0 0 / 10%);
+  }
+
+  .code-block-container[data-theme="light"]:hover {
+    border-color: oklch(0.708 0 0 / 0.2);
+  }
+
+  .code-block-container[data-theme="light"] pre {
+    color: oklch(0.145 0 0);
+  }
+
+  .code-block-container[data-theme="light"] .line::before {
+    color: oklch(0.556 0 0 / 0.4);
+  }
+
+  .code-block-container[data-theme="light"] .line:hover {
+    background: oklch(0.708 0 0 / 0.1);
+  }
+
+  /* 代码选择样式增强 */
+  .code-block-container pre ::selection {
+    background: oklch(0.708 0 0 / 0.2);
+    color: inherit;
+  }
+
+  .code-block-container pre ::-moz-selection {
+    background: oklch(0.708 0 0 / 0.2);
+    color: inherit;
+  }
+
+  /* 代码块组布局 */
+  .code-block-group {
+    @apply space-y-4;
+  }
+
+  .code-block-group .code-block-container {
+    @apply my-0;
+  }
+
+  /* 内联代码增强 */
+  .code-inline {
+    @apply relative px-2 py-1 bg-accent/50 text-accent-foreground rounded-md text-sm font-mono border border-border/50 transition-colors duration-200 hover:bg-accent/70;
+  }
+
+  .code-inline:hover {
+    @apply shadow-sm;
+  }
+
+  /* 代码高亮动画 */
+  @keyframes highlight {
+    0% { background-color: oklch(0.708 0 0 / 0.3); }
+    100% { background-color: transparent; }
+  }
+
+  .code-highlight {
+    animation: highlight 1s ease-out;
+  }
+
+  /* 键盘快捷键样式 */
+  .kbd {
+    @apply inline-flex items-center px-2 py-1 text-xs font-mono bg-background border border-border rounded-md shadow-sm;
+  }
+
+  /* 增强版代码块按钮样式 */
+  .theme-toggle-button,
+  .action-button {
+    @apply w-8 h-8 p-0 bg-background/80 backdrop-blur-sm border border-border/50 rounded-md hover:bg-accent/50 transition-all duration-300;
+  }
+
+  .code-block-container:hover .theme-toggle-button,
+  .code-block-container:hover .action-button {
+    @apply opacity-100;
+  }
+
+  .theme-toggle-button {
+    @apply absolute top-12 left-12 z-20;
+  }
+
+  .code-actions {
+    @apply absolute top-12 right-12 flex gap-2 z-20;
+  }
+
+  .export-button {
+    @apply hover:bg-green-500/10 hover:border-green-500/30 hover:text-green-600;
+  }
+
+  .keyboard-hint {
+    @apply absolute top-12 left-1/2 transform -translate-x-1/2 z-10 opacity-0 transition-opacity duration-300;
+  }
+
+  .code-block-container:hover .keyboard-hint {
+    @apply opacity-100;
+  }
+
+  .expand-button {
+    @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 bg-background/90 backdrop-blur-sm border border-border/50 hover:bg-accent/50 shadow-lg px-4 py-2 rounded-md text-sm font-medium transition-all duration-300;
+  }
+
+  .expand-button:hover .expand-icon {
+    @apply rotate-180;
+  }
+
+  .expand-button[data-collapsed="false"] .expand-icon {
+    @apply rotate-180;
+  }
+
+  .code-expand-container {
+    @apply absolute bottom-0 left-0 right-0 flex justify-center p-4;
+  }
+
+  /* 动作按钮图标样式 */
+  .action-button svg,
+  .theme-toggle-button svg {
+    @apply w-4 h-4;
+  }
+
+  /* 代码块容器增强交互 */
+  .code-block-container:hover .theme-toggle-button,
+  .code-block-container:hover .action-button {
+    @apply opacity-100;
+  }
+
+  .code-block-container:hover .keyboard-hint {
+    @apply opacity-100;
+  }
+
+  /* 按钮聚焦状态 */
+  .theme-toggle-button:focus,
+  .action-button:focus,
+  .expand-button:focus {
+    @apply outline-2 outline-ring/50 outline-offset-2;
+  }
+
+  /* 代码块容器数据属性样式 */
+  .code-block-container[data-theme="light"] {
+    @apply bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200;
+  }
+
+  .code-block-container[data-theme="light"] .theme-toggle-button,
+  .code-block-container[data-theme="light"] .action-button {
+    @apply bg-gray-50/90 border-gray-200 hover:bg-gray-100;
+  }
+
+  .code-block-container[data-theme="light"] .keyboard-hint {
+    @apply bg-gray-50/90 text-gray-600;
+  }
+
+  .code-block-container[data-theme="light"] pre {
+    @apply text-gray-800;
+  }
+
+  .code-block-container[data-theme="light"] .line::before {
+    @apply text-gray-400;
+  }
+
+  .code-block-container[data-theme="light"] .line:hover {
+    @apply bg-gray-100;
+  }
+
+  /* 深色主题（默认）增强 */
+  .code-block-container[data-theme="dark"] {
+    background: linear-gradient(145deg, oklch(0.145 0 0), oklch(0.07 0 0));
+  }
+
+  /* 自动主题（跟随系统） */
+  .code-block-container[data-theme="auto"] {
+    background: linear-gradient(145deg, oklch(0.145 0 0), oklch(0.07 0 0));
+  }
+
+  @media (prefers-color-scheme: light) {
+    .code-block-container[data-theme="auto"] {
+      background: linear-gradient(145deg, oklch(0.985 0 0), oklch(0.95 0 0));
+      border-color: oklch(0 0 0 / 10%);
+    }
+
+    .code-block-container[data-theme="auto"] pre {
+      color: oklch(0.145 0 0);
+    }
+
+    .code-block-container[data-theme="auto"] .line::before {
+      color: oklch(0.556 0 0 / 0.4);
+    }
+
+    .code-block-container[data-theme="auto"] .line:hover {
+      background: oklch(0.708 0 0 / 0.1);
+    }
+  }
+
+  /* 代码块动画增强 */
+  .code-block-container {
+    animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .code-block-container:nth-child(1) { animation-delay: 0ms; }
+  .code-block-container:nth-child(2) { animation-delay: 100ms; }
+  .code-block-container:nth-child(3) { animation-delay: 200ms; }
+  .code-block-container:nth-child(4) { animation-delay: 300ms; }
+  .code-block-container:nth-child(5) { animation-delay: 400ms; }
+
+  /* 内联代码增强样式 */
+  :not(pre) > code {
+    @apply relative px-2 py-1 bg-accent/50 text-accent-foreground rounded-md text-sm font-mono border border-border/50 transition-all duration-200 hover:bg-accent/70 hover:shadow-sm hover:-translate-y-0.5;
+  }
+
+  /* 代码组样式 */
+  .code-group {
+    @apply my-6 space-y-4;
+  }
+
+  .code-group .code-block-container {
+    @apply my-0;
+  }
+
+  .code-group .code-block-container:first-child {
+    @apply rounded-t-2xl rounded-b-none;
+  }
+
+  .code-group .code-block-container:last-child {
+    @apply rounded-t-none rounded-b-2xl;
+  }
+
+  .code-group .code-block-container:not(:first-child):not(:last-child) {
+    @apply rounded-none;
+  }
+
+  /* 行高亮功能 */
+  .code-block-container .line.highlight {
+    @apply bg-primary/10 border-l-4 border-primary/50;
+  }
+
+  .code-block-container .line.highlight::before {
+    @apply text-primary font-semibold;
+  }
+
+  /* 增强版移动端响应式设计 */
+  @media (max-width: 768px) {
+    /* Hero区域移动端优化 */
+    .hero-section {
+      @apply min-h-screen py-16 px-4;
+    }
+
+    .hero-section h1 {
+      @apply text-3xl sm:text-4xl;
+    }
+
+    .hero-section p {
+      @apply text-base sm:text-lg;
+    }
+
+    /* 功能网格移动端优化 */
+    .feature-grid {
+      @apply grid-cols-1 gap-6 px-4;
+    }
+
+    .feature-card {
+      @apply p-6 text-center;
+    }
+
+    .feature-card .card-title {
+      @apply text-xl;
+    }
+
+    /* 文章卡片移动端优化 */
+    .post-card-grid {
+      @apply grid-cols-1 gap-6 px-4;
+    }
+
+    .post-card-enhanced {
+      @apply p-6;
+    }
+
+    .post-card-enhanced.featured {
+      @apply col-span-1;
+    }
+
+    /* 代码块移动端优化 */
+    .code-block-container {
+      @apply rounded-xl mx-4;
+    }
+
+    .theme-toggle-button {
+      @apply top-8 left-8 w-6 h-6;
+    }
+
+    .code-actions {
+      @apply top-8 right-8 gap-1;
+    }
+
+    .action-button {
+      @apply w-6 h-6;
+    }
+
+    .action-button svg,
+    .theme-toggle-button svg {
+      @apply w-3 h-3;
+    }
+
+    .code-language-label {
+      @apply top-4 right-8 text-xs px-2 py-1;
+    }
+
+    .keyboard-hint {
+      @apply top-8 text-xs;
+    }
+
+    .keyboard-hint .kbd {
+      @apply px-1 py-0.5 text-xs;
+    }
+
+    pre {
+      @apply px-4 py-12 text-sm;
+    }
+
+    .code-block-container pre .line {
+      @apply pl-8;
+    }
+
+    .code-block-container pre .line::before {
+      @apply w-6 text-xs;
+    }
+
+    .expand-button {
+      @apply bottom-4 px-3 py-2 text-xs;
+    }
+
+    .code-line-indicator {
+      @apply bottom-2 left-4 text-xs;
+    }
+
+    /* 按钮移动端优化 */
+    .button-group {
+      @apply flex-col gap-3;
+    }
+
+    .button-xl {
+      @apply px-6 py-3 text-base;
+    }
+
+    /* 统计数据移动端优化 */
+    .stats-grid {
+      @apply grid-cols-2 gap-6 text-center;
+    }
+
+    .stats-item {
+      @apply space-y-1;
+    }
+
+    .stats-number {
+      @apply text-2xl;
+    }
+
+    /* 导航移动端优化 */
+    .header-nav {
+      @apply px-4;
+    }
+
+    .nav-menu {
+      @apply hidden;
+    }
+
+    .mobile-menu-button {
+      @apply block p-2;
+    }
+
+    /* 移动端触摸优化 */
+    .code-block-container:hover .theme-toggle-button,
+    .code-block-container:hover .action-button,
+    .code-block-container:hover .keyboard-hint {
+      @apply opacity-100;
+    }
+
+    .copy-button {
+      @apply opacity-100 transform-none;
+    }
+
+    .code-language-label {
+      @apply transform-none;
+    }
+
+    /* 移动端滚动优化 */
+    .code-block-container pre {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .code-block-container pre::-webkit-scrollbar {
+      @apply h-1;
+    }
+
+    /* 移动端动画简化 */
+    .code-block-container {
+      animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .hero-section {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+  }
+
+  /* 平板设备适配 */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .feature-grid {
+      @apply grid-cols-2 gap-8;
+    }
+
+    .post-card-grid {
+      @apply grid-cols-2 gap-8;
+    }
+
+    .hero-section h1 {
+      @apply text-5xl;
+    }
+
+    .stats-grid {
+      @apply grid-cols-4 gap-8;
+    }
+  }
+
+  /* 大屏幕优化 */
+  @media (min-width: 1440px) {
+    .hero-section h1 {
+      @apply text-7xl;
+    }
+
+    .feature-grid {
+      @apply grid-cols-3 gap-12;
+    }
+
+    .post-card-grid {
+      @apply grid-cols-3 gap-10;
+    }
+
+    .code-block-container {
+      @apply max-w-6xl mx-auto;
+    }
+  }
+
+  /* 移动端导航优化 */
+  @media (max-width: 640px) {
+    .header-content {
+      @apply px-4 py-3;
+    }
+
+    .header-title {
+      @apply text-lg;
+    }
+
+    .nav-links {
+      @apply hidden;
+    }
+
+    .mobile-nav-toggle {
+      @apply block p-2;
+    }
+  }
+
+  /* 移动端性能优化 */
+  @media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .code-block-container,
+    .hero-section,
+    .feature-card,
+    .post-card-enhanced {
+      will-change: transform, opacity;
+    }
+  }
+
+  /* 触摸设备优化 */
+  @media (hover: none) and (pointer: coarse) {
+    .theme-toggle-button,
+    .action-button,
+    .expand-button {
+      @apply opacity-100 transform-none;
+    }
+
+    .keyboard-hint {
+      @apply opacity-100;
+    }
+
+    .code-block-container:hover {
+      transform: none;
+    }
+
+    .post-card-enhanced:hover {
+      transform: none;
+    }
+
+    .feature-card:hover {
+      transform: none;
+    }
+
+    /* 增大触摸目标 */
+    .theme-toggle-button,
+    .action-button,
+    .copy-button,
+    .expand-button {
+      @apply min-w-[44px] min-h-[44px];
+    }
+  }
+
+  /* 高分辨率屏幕优化 */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .language-icon,
+    .copy-icon svg,
+    .theme-toggle-button svg,
+    .action-button svg {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+
+  /* 打印优化增强 */
+  @media print {
+    .hero-section,
+    .feature-grid,
+    .stats-section,
+    .code-actions,
+    .theme-toggle-button,
+    .keyboard-hint,
+    .expand-button,
+    .code-line-indicator {
+      display: none !important;
+    }
+
+    .code-block-container {
+      @apply bg-white border border-gray-300 break-inside-avoid;
+      box-shadow: none !important;
+      page-break-inside: avoid;
+    }
+
+    .post-card-enhanced {
+      @apply break-inside-avoid;
+      page-break-inside: avoid;
+    }
+
+    pre {
+      @apply text-black bg-white;
+      color: black !important;
+      background: white !important;
+    }
+
+    .code-language-label {
+      @apply bg-gray-100 text-gray-800 border border-gray-300;
+      background: #f3f4f6 !important;
+      color: #374151 !important;
+    }
+  }
+
+  /* 无障碍优化 */
+  @media (prefers-contrast: high) {
+    .code-block-container {
+      @apply border-2 border-gray-400;
+    }
+
+    .theme-toggle-button,
+    .action-button,
+    .expand-button {
+      @apply border-2 border-gray-400;
+    }
+
+    .code-language-label {
+      @apply border-2 border-blue-500;
+    }
+
+    .post-card-enhanced {
+      @apply border-2 border-gray-300;
+    }
+  }
+
+  /* 滚动条优化 */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full hover:bg-gray-500;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 hover:bg-gray-500;
   }
 }
